@@ -9,6 +9,9 @@ package tester;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -22,12 +25,12 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
     /**
      * Creates new form ChipsGame
      */
-    public ChipsGame() {
-        this.b= new Board(7);
+    public ChipsGame() throws FileNotFoundException {
+        this.b= new Board("src\\level 1.txt");
         this.getContentPane().add(b);
         this.pack();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(228, 248);
+        this.setSize(500, 338);
         this.setVisible(true);
         timer= new Timer(200,this);
         timer.start();
@@ -44,7 +47,7 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(230, 248));
+        setPreferredSize(new java.awt.Dimension(500, 338));
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
@@ -110,7 +113,11 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ChipsGame().setVisible(true);
+                try {
+                    new ChipsGame().setVisible(true);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(ChipsGame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

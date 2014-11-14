@@ -70,7 +70,10 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         if(b.getPlayer().isFinish()){
-            JOptionPane.showMessageDialog(null, "Selamat!!");
+            JOptionPane.showMessageDialog(null, "Level 1 selesai!");
+        }
+        if(!b.getPlayer().getStatus()){
+            JOptionPane.showMessageDialog(null, "Kurang Beruntung");
         }
         if(evt.getKeyCode()==KeyEvent.VK_DOWN){
             b.play(2);

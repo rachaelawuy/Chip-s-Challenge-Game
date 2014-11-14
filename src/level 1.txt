@@ -3,8 +3,8 @@ xxxxxxxxxx
 xxIxxxxx.x
 x.......Ix
 xx.xFx...x
-xx..C..xxx
-xI.x.x..xx
-xx.x...xxx
-xPBx.x.Ixx
+xx..C..x.x
+xI.x.x..Fx
+xx.x...x.x
+xPBx.x.I.x
 xxxxxxxxxx

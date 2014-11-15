@@ -21,62 +21,64 @@ public class Board extends JPanel {
     private Tile[][] tiles; //papan permainan
     private Chip player; //pemain
     private int amountOfIC; //jumlah IC yang harus diambil
-    private ArrayList res=new ArrayList();
-    private int level=0;
+    private ArrayList res = new ArrayList();
+    private int level = 0;
     private int xBarrier, yBarrier;
-    
+
     /**
      * Constructor kelas Chip
      *
      */
     public Board(String fileName) throws FileNotFoundException {
-        this.level+=1;
-        this.amountOfIC=0;
+        this.level += 1;
+        this.amountOfIC = 0;
         tiles = new Tile[10][10];
         addLevel(fileName);
         generateTile();
     }
 
-    public void addLevel(String fileName){
-        try{
-            FileReader reader=new FileReader(fileName);
-            BufferedReader buffered= new BufferedReader(reader);
-            String temp= buffered.readLine();
-            while (temp!=null){
+    public void addLevel(String fileName) {
+        try {
+            FileReader reader = new FileReader(fileName);
+            BufferedReader buffered = new BufferedReader(reader);
+            String temp = buffered.readLine();
+            while (temp != null) {
                 res.add(temp);
-                temp=buffered.readLine();
+                temp = buffered.readLine();
             }
-        } catch(FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
-        } catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
-    public void generateTile(){
-        xBarrier=0;
-        yBarrier=0;
-        amountOfIC=0;
-        for (int i=0; i<tiles.length; i++){
-            for (int j=0; j<tiles.length; j++){
-                if(res.get(i).toString().charAt(j)=='.'){
-                    tiles[i][j]=new Floor();
-                } else if(res.get(i).toString().charAt(j)=='x'){
-                    tiles[i][j]=new Wall();
-                } else if(res.get(i).toString().charAt(j)=='B'){
-                    tiles[i][j]=new Barrier();
-                    xBarrier=i;
-                    yBarrier=j;
-                } else if(res.get(i).toString().charAt(j)=='F'){
-                    tiles[i][j]=new Fire();
-                } else if(res.get(i).toString().charAt(j)=='P'){
-                    tiles[i][j]=new FinishPoint();
-                } else if(res.get(i).toString().charAt(j)=='I'){
-                    tiles[i][j]=new IntegratedCircuit();
-                    this.amountOfIC+=1;
-                } else if(res.get(i).toString().charAt(j)=='C'){
-                    tiles[i][j]=new Floor();
-                    player=new Chip(i,j);
+
+    public void generateTile() {
+        xBarrier = 0;
+        yBarrier = 0;
+        amountOfIC = 0;
+        for (int i = 0; i < tiles.length; i++) {
+            for (int j = 0; j < tiles.length; j++) {
+                if (res.get(i).toString().charAt(j) == '.') {
+                    tiles[i][j] = new Floor();
+                } else if (res.get(i).toString().charAt(j) == 'x') {
+                    tiles[i][j] = new Wall();
+                } else if (res.get(i).toString().charAt(j) == 'B') {
+                    tiles[i][j] = new Barrier();
+                    xBarrier = i;
+                    yBarrier = j;
+                } else if (res.get(i).toString().charAt(j) == 'F') {
+                    tiles[i][j] = new Fire();
+                } else if (res.get(i).toString().charAt(j) == 'P') {
+                    tiles[i][j] = new FinishPoint();
+                } else if (res.get(i).toString().charAt(j) == 'I') {
+                    tiles[i][j] = new IntegratedCircuit();
+                    this.amountOfIC += 1;
+                } else if (res.get(i).toString().charAt(j) == 'C') {
+                    tiles[i][j] = new Floor();
+                    player = new Chip(i, j);
+                } else if (res.get(i).toString().charAt(j) == 'V'){
+                    tiles[i][j]= new FireproofShoes();
                 }
             }
         }
@@ -142,7 +144,11 @@ public class Board extends JPanel {
                 player.move(input);
                 tiles[player.getLocation().x][player.getLocation().y].steppedOn(player);
                 IntegratedCircuit c = new IntegratedCircuit();
-                if (tiles[player.getLocation().x][player.getLocation().y].getClass() == c.getClass()) {
+                if (tiles[player.getLocation().x][player.getLocation().y] instanceof IntegratedCircuit) {
+                    tiles[player.getLocation().x][player.getLocation().y] = new Floor();
+                } else if (tiles[player.getLocation().x][player.getLocation().y] instanceof FireproofShoes) {
+                    tiles[player.getLocation().x][player.getLocation().y] = new Floor();
+                } else if (tiles[player.getLocation().x][player.getLocation().y] instanceof WaterproofShoes) {
                     tiles[player.getLocation().x][player.getLocation().y] = new Floor();
                 }
             }

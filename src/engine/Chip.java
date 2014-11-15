@@ -9,6 +9,7 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.net.URL;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 
 /**
@@ -22,7 +23,9 @@ public class Chip extends JPanel{
     private int icTaken; //jumlah chip yang telah diambil
     private boolean finish; //status yang menunjukkan apakah chip sudah sampai ke finish point
     private Image img; //gambar Chip
-
+    private int waterProof;
+    private int fireProof;
+    
     /**
      * Constructor Kelas Chip Menginisiasikan status Chip menjadi true dan
      * jumlah IC yg diambil dengan 0
@@ -33,6 +36,8 @@ public class Chip extends JPanel{
         location = new Point(x, y);
         isAlive = true;
         icTaken = 0;
+        fireProof=0;
+        waterProof=0;
         finish = false;
         String imgFileName = "chip kiri.gif";
         URL imgURL = getClass().getResource("/images/chip kiri.gif");
@@ -100,10 +105,16 @@ public class Chip extends JPanel{
      * @param x koordinat x posisi IC
      * @param y koordinat y posisi IC
      */
-    public void take(int x, int y) {
+    public void take(int x, int y, Object o) {
         Point ic = new Point(x, y);
-        if (location.equals(ic)) {
-            this.icTaken += 1;
+        if(o instanceof IntegratedCircuit){
+            icTaken+=1;
+        } else if(o instanceof FireproofShoes){
+            fireProof+=1;
+            System.out.println(fireProof);
+        } else if(o instanceof WaterproofShoes){
+            waterProof+=1;
+            System.out.println(waterProof);
         }
     }
 
@@ -115,7 +126,6 @@ public class Chip extends JPanel{
      */
     public void move(int x) {
         Point newLocation;
-        String imgFileName = "";
         URL imgURL=null;
         if (x == 2) {
             newLocation = new Point((this.location.x + 1), this.location.y);
@@ -137,7 +147,7 @@ public class Chip extends JPanel{
 
         }
         if (imgURL == null) {
-            System.err.println("Couldn't find the file " + imgFileName);
+            System.err.println("Couldn't find the file");
         } else {
             img = Toolkit.getDefaultToolkit().getImage(imgURL);
         }
@@ -159,5 +169,20 @@ public class Chip extends JPanel{
     public Image getImg() {
         return img;
     }
-    
+
+    public int getWaterProof() {
+        return waterProof;
+    }
+
+    public void setWaterProof(int waterProof) {
+        this.waterProof = waterProof;
+    }
+
+    public int getFireProof() {
+        return fireProof;
+    }
+
+    public void setFireProof(int fireProof) {
+        this.fireProof = fireProof;
+    }
 }

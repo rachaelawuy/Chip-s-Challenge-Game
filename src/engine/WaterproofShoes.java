@@ -6,17 +6,18 @@
 
 package engine;
 
+import java.awt.Point;
 import java.net.URL;
 
 /**
  *
  * @author rachae
  */
-public class IntegratedCircuit extends Tile {
-    
-    public IntegratedCircuit() {
-        String imgFileName= "ic31.png";
-        URL imgURL= getClass().getResource("/images/ic31.png");
+public class WaterproofShoes extends Tile {
+
+    public WaterproofShoes(){
+        String imgFileName= "waterproof shoes.png";
+        URL imgURL= getClass().getResource("/images/waterproof shoes.png");
         if(imgURL==null){
             System.err.println("Couldn't find the file "+ imgFileName);
         } else {
@@ -49,5 +50,4 @@ public class IntegratedCircuit extends Tile {
             img= imgToolKit.getImage(imgURL);
         }
     }
-    
 }

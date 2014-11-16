@@ -111,10 +111,8 @@ public class Chip extends JPanel{
             icTaken+=1;
         } else if(o instanceof FireproofShoes){
             fireProof+=1;
-            System.out.println(fireProof);
         } else if(o instanceof WaterproofShoes){
             waterProof+=1;
-            System.out.println(waterProof);
         }
     }
 

@@ -79,6 +79,10 @@ public class Board extends JPanel {
                     player = new Chip(i, j);
                 } else if (res.get(i).toString().charAt(j) == 'V'){
                     tiles[i][j]= new FireproofShoes();
+                } else if (res.get(i).toString().charAt(j) == 'W'){
+                    tiles[i][j]= new Water();
+                } else if (res.get(i).toString().charAt(j) == 'S'){
+                    tiles[i][j]= new WaterproofShoes();
                 }
             }
         }

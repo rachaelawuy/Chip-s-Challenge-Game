@@ -42,12 +42,8 @@ public class Water extends Tile {
      */
     @Override
     public void steppedOn(Chip player) {
-        if(player.getWaterProof()<=0){
+        if(!player.getWaterProof()){
             player.setStatus(false);
-        } else {
-            int temp=player.getWaterProof();
-            temp-=1;
-            player.setWaterProof(temp);
         }
     }
 }

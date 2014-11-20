@@ -23,8 +23,8 @@ public class Chip extends JPanel{
     private int icTaken; //jumlah chip yang telah diambil
     private boolean finish; //status yang menunjukkan apakah chip sudah sampai ke finish point
     private Image img; //gambar Chip
-    private int waterProof;
-    private int fireProof;
+    private boolean waterProof;
+    private boolean fireProof;
     
     /**
      * Constructor Kelas Chip Menginisiasikan status Chip menjadi true dan
@@ -36,8 +36,8 @@ public class Chip extends JPanel{
         location = new Point(x, y);
         isAlive = true;
         icTaken = 0;
-        fireProof=0;
-        waterProof=0;
+        fireProof=false;
+        waterProof=false;
         finish = false;
         String imgFileName = "chip kiri.gif";
         URL imgURL = getClass().getResource("/images/chip kiri.gif");
@@ -110,9 +110,9 @@ public class Chip extends JPanel{
         if(o instanceof IntegratedCircuit){
             icTaken+=1;
         } else if(o instanceof FireproofShoes){
-            fireProof+=1;
+            fireProof=true;
         } else if(o instanceof WaterproofShoes){
-            waterProof+=1;
+            waterProof=true;
         }
     }
 
@@ -168,19 +168,19 @@ public class Chip extends JPanel{
         return img;
     }
 
-    public int getWaterProof() {
+    public boolean getWaterProof() {
         return waterProof;
     }
 
-    public void setWaterProof(int waterProof) {
+    public void setWaterProof(boolean waterProof) {
         this.waterProof = waterProof;
     }
 
-    public int getFireProof() {
+    public boolean getFireProof() {
         return fireProof;
     }
 
-    public void setFireProof(int fireProof) {
+    public void setFireProof(boolean fireProof) {
         this.fireProof = fireProof;
     }
 }

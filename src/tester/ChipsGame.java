@@ -22,15 +22,17 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
 
     Board b;
     Timer timer;
+    String fileName;
     /**
      * Creates new form ChipsGame
      */
     public ChipsGame() throws FileNotFoundException {
-        this.b= new Board("src\\level 2.txt");
+        this.fileName="src\\level 1.txt";
+        this.b= new Board(fileName);
         this.getContentPane().add(b);
         this.pack();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(500, 338);
+        this.setSize(320, 338);
         this.setVisible(true);
         timer= new Timer(200,this);
         timer.start();
@@ -46,35 +48,76 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        labelLevel = new javax.swing.JLabel();
+        labelChip = new javax.swing.JLabel();
+        labelLeft = new javax.swing.JLabel();
+        labelPenunjukLevel = new javax.swing.JLabel();
+        labelSisaChip = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(500, 338));
+        setAutoRequestFocus(false);
+        setPreferredSize(new java.awt.Dimension(460, 338));
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
             }
         });
 
+        labelLevel.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        labelLevel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelLevel.setText("LEVEL");
+
+        labelChip.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        labelChip.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelChip.setText("Chips");
+
+        labelLeft.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        labelLeft.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelLeft.setText("left");
+
+        labelPenunjukLevel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        labelPenunjukLevel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelPenunjukLevel.setText("1");
+
+        labelSisaChip.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        labelSisaChip.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelSisaChip.setText("...");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(388, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelSisaChip, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelPenunjukLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelChip, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(labelLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelPenunjukLevel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelChip)
+                .addGap(1, 1, 1)
+                .addComponent(labelLeft)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelSisaChip, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(137, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        if(b.getPlayer().isFinish()){
-            JOptionPane.showMessageDialog(null, "Level 1 selesai!");
-        }
-        if(!b.getPlayer().getStatus()){
-            JOptionPane.showMessageDialog(null, "Kurang Beruntung");
-        }
+        labelSisaChip.setText(b.getAmountOfIC()-b.getPlayer().getIcTaken()+"");
         if(evt.getKeyCode()==KeyEvent.VK_DOWN){
             b.play(2);
         } else if(evt.getKeyCode()==KeyEvent.VK_LEFT){
@@ -83,6 +126,13 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
             b.play(8);
         } else {
             b.play(6);
+        }
+        if(b.getPlayer().isFinish()){
+            JOptionPane.showMessageDialog(null, "Level 1 selesai!");
+            nextLevel();
+        }
+        if(!b.getPlayer().getStatus()){
+            JOptionPane.showMessageDialog(null, "Kurang Beruntung");
         }
     }//GEN-LAST:event_formKeyPressed
     
@@ -126,6 +176,11 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel labelChip;
+    private javax.swing.JLabel labelLeft;
+    private javax.swing.JLabel labelLevel;
+    private javax.swing.JLabel labelPenunjukLevel;
+    private javax.swing.JLabel labelSisaChip;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -133,4 +188,9 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
         repaint();
     }
 
+    
+    public void nextLevel(){
+        fileName="src\\level 2.txt";
+        b.addLevel(fileName);
+    }
 }

@@ -1,9 +1,9 @@
 xxxxxxxxxx
-xI.....FIx
-x......xVx
-x..WWW.xxx
-xxWWPB...x
-xS.VWW.x.x
+x......FFx
+x......xIx
+x..xxx.xxx
+xxWxPB...x
+xI.Vxx.x.x
 xxxxxx.xIx
 xS......xx
 xIxxxxx.Cx

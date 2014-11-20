@@ -40,12 +40,8 @@ public class Fire extends Tile{
      */
     @Override
     public void steppedOn(Chip player) {
-        if(player.getFireProof()<=0){
+        if(!player.getFireProof()){
             player.setStatus(false);
-        } else {
-            int temp=player.getFireProof();
-            temp-=1;
-            player.setFireProof(temp);
         }
     }
 }

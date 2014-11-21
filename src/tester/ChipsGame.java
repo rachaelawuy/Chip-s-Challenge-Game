@@ -22,13 +22,13 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
 
     private Board b;
     String fileName;
-    int level;
+    private int level;
     /**
      * Creates new form ChipsGame
      */
     public ChipsGame() throws FileNotFoundException {
-        this.fileName="src\\level 1.txt";
         level=1;
+        this.fileName="src\\level "+level+".txt";
         this.b= new Board(fileName);
         this.getContentPane().add(b);
         this.pack();
@@ -38,6 +38,7 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
         this.setVisible(true);
         initComponents();
         labelSisaChip.setText(b.getAmountOfIC()+"");
+        labelPenunjukLevel.setText(level+"");
     }
 
     /**
@@ -57,7 +58,7 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
-        setPreferredSize(new java.awt.Dimension(460, 338));
+        setPreferredSize(new java.awt.Dimension(460, 330));
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
@@ -131,9 +132,11 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
         if(b.getPlayer().isFinish()){
             JOptionPane.showMessageDialog(null, "Level "+level+" selesai!");
             nextLevel();
+            labelPenunjukLevel.setText(level+"");
         }
         if(!b.getPlayer().getStatus()){
             JOptionPane.showMessageDialog(null, "Game Over");
+            
         }
     }//GEN-LAST:event_formKeyPressed
     

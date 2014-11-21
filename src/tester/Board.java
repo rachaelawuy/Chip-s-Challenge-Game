@@ -22,7 +22,6 @@ public class Board extends JPanel {
     private Chip player; //pemain
     private int amountOfIC; //jumlah IC yang harus diambil
     private ArrayList res;
-    private int level;
     private int xBarrier, yBarrier;
 
     /**
@@ -30,13 +29,11 @@ public class Board extends JPanel {
      *
      */
     public Board(String fileName) throws FileNotFoundException {
-        //this.level=0;
         tiles = new Tile[10][10];
         addLevel(fileName);
     }
 
     public void addLevel(String fileName) {
-        //this.level+=1;
         res=new ArrayList();
         try {
             FileReader reader = new FileReader(fileName);
@@ -189,7 +186,4 @@ public class Board extends JPanel {
         return amountOfIC;
     }
     
-    public int getLevel(){
-        return level;
-    }
 }

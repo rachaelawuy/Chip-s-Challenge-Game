@@ -27,12 +27,13 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
      * Creates new form ChipsGame
      */
     public ChipsGame() throws FileNotFoundException {
-        this.fileName="src\\level 1.txt";
+        this.fileName="src\\level 2.txt";
         this.b= new Board(fileName);
         this.getContentPane().add(b);
         this.pack();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(320, 338);
+        this.setResizable(false);
         this.setVisible(true);
         timer= new Timer(200,this);
         timer.start();

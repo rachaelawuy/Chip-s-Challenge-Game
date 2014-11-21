@@ -23,11 +23,13 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
     Board b;
     Timer timer;
     String fileName;
+    int level;
     /**
      * Creates new form ChipsGame
      */
     public ChipsGame() throws FileNotFoundException {
-        this.fileName="src\\level 2.txt";
+        this.fileName="src\\level 1.txt";
+        level=1;
         this.b= new Board(fileName);
         this.getContentPane().add(b);
         this.pack();
@@ -38,6 +40,7 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
         timer= new Timer(200,this);
         timer.start();
         initComponents();
+        labelSisaChip.setText(b.getAmountOfIC()+"");
     }
 
     /**
@@ -118,7 +121,6 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
     }// </editor-fold>//GEN-END:initComponents
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        labelSisaChip.setText(b.getAmountOfIC()-b.getPlayer().getIcTaken()+"");
         if(evt.getKeyCode()==KeyEvent.VK_DOWN){
             b.play(2);
         } else if(evt.getKeyCode()==KeyEvent.VK_LEFT){
@@ -128,8 +130,9 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
         } else {
             b.play(6);
         }
+        labelSisaChip.setText(b.getAmountOfIC()-b.getPlayer().getIcTaken()+"");
         if(b.getPlayer().isFinish()){
-            JOptionPane.showMessageDialog(null, "Level 1 selesai!");
+            JOptionPane.showMessageDialog(null, "Level "+level+" selesai!");
             nextLevel();
         }
         if(!b.getPlayer().getStatus()){
@@ -191,7 +194,13 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
 
     
     public void nextLevel(){
-        fileName="src\\level 2.txt";
-        b.addLevel(fileName);
+        level+=1;
+        if(level<3){
+            fileName="src\\level "+level+".txt";
+            System.out.println(fileName);
+            b.addLevel(fileName);
+            repaint();
+            labelSisaChip.setText(b.getAmountOfIC()+"");
+        }
     }
 }

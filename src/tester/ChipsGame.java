@@ -20,8 +20,7 @@ import javax.swing.*;
  */
 public class ChipsGame extends javax.swing.JFrame implements ActionListener{
 
-    Board b;
-    Timer timer;
+    private Board b;
     String fileName;
     int level;
     /**
@@ -37,8 +36,6 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
         this.setSize(320, 338);
         this.setResizable(false);
         this.setVisible(true);
-        timer= new Timer(200,this);
-        timer.start();
         initComponents();
         labelSisaChip.setText(b.getAmountOfIC()+"");
     }
@@ -136,7 +133,7 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
             nextLevel();
         }
         if(!b.getPlayer().getStatus()){
-            JOptionPane.showMessageDialog(null, "Kurang Beruntung");
+            JOptionPane.showMessageDialog(null, "Game Over");
         }
     }//GEN-LAST:event_formKeyPressed
     

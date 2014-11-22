@@ -10,7 +10,7 @@ import java.net.URL;
 
 /**
  *
- * @author rachae
+ * @author rachael
  */
 public class Wall extends Tile{
     

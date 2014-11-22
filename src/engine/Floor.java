@@ -14,6 +14,10 @@ import java.net.URL;
  */
 public class Floor extends Tile{
     
+    /**
+     * Konstruktor kelas Floor
+     * Mengeset atribut gambar dengan gambar berupa lantai
+     */
     public Floor(){
         
         String imgFileName= "tilefix.jpg";

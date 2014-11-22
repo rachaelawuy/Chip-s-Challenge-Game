@@ -14,6 +14,10 @@ import java.net.URL;
  */
 public class Fire extends Tile{
 
+    /**
+     * Konstruktor kelas Fire
+     * Mengeset atribut gambar dengan gambar berupa api
+     */
     public Fire() {
         String imgFileName= "fire22.png";
         URL imgURL= getClass().getResource("/images/fire22.png");

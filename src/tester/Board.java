@@ -25,7 +25,7 @@ public class Board extends JPanel {
     private int xBarrier, yBarrier;
 
     /**
-     * Constructor kelas Chip
+     * Constructor kelas Board
      *
      */
     public Board(String fileName) throws FileNotFoundException {
@@ -33,6 +33,10 @@ public class Board extends JPanel {
         addLevel(fileName);
     }
 
+    /**
+     * Method untuk menambahkan level baru dan membuat board sesuai file text yang dibaca
+     * @param fileName nama file yang dibaca
+     */
     public void addLevel(String fileName) {
         res=new ArrayList();
         try {
@@ -51,6 +55,9 @@ public class Board extends JPanel {
         generateTile();
     }
 
+    /**
+     * method untuk membuat board
+     */
     public void generateTile() {
         xBarrier = 0;
         yBarrier = 0;
@@ -89,8 +96,8 @@ public class Board extends JPanel {
     /**
      * Method untuk mengecek apakah suatu tile bisa dilewati
      *
-     * @param direction
-     * @return
+     * @param direction arah chip bergerak
+     * @return true jika tile bisa dilewati, false jika tidak
      */
     public boolean canMove(int direction) {
         boolean res = false;
@@ -182,6 +189,10 @@ public class Board extends JPanel {
         g.drawImage(this.player.getImg(), tiles[0][0].getImg().getWidth(this) * player.getLocation().y, tiles[0][0].getImg().getHeight(this) * player.getLocation().x, this);
     }
 
+    /**
+     * Method untuk mengembalikan jumlah IC
+     * @return jumlah IC
+     */
     public int getAmountOfIC() {
         return amountOfIC;
     }

@@ -9,7 +9,6 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.net.URL;
-import java.util.ArrayList;
 import javax.swing.JPanel;
 
 /**
@@ -168,18 +167,34 @@ public class Chip extends JPanel{
         return img;
     }
 
+    /**
+     * Method untuk mengembalikan apakah chip memiliki sepatu anti air atau tidak
+     * @return true jika chip memiliki sepatu anti air, false jika tidak
+     */
     public boolean getWaterProof() {
         return waterProof;
     }
 
+    /**
+     * Method untuk merubah status kepemilikian sepatu anti air
+     * @param waterProof true untuk menunjukkan bahwa Chip memiliki sepatu anti air, false jika tidak
+     */
     public void setWaterProof(boolean waterProof) {
         this.waterProof = waterProof;
     }
-
+    
+    /**
+     * Method untuk mengembalikan apakah chip memiliki sepatu anti api atau tidak
+     * @return true jika chip memiliki sepatu anti api, false jika tidak
+     */
     public boolean getFireProof() {
         return fireProof;
     }
 
+    /**
+     * Method untuk merubah status kepemilikian sepatu anti api
+     * @param fireProof true untuk menunjukkan bahwa Chip memiliki sepatu anti api, false jika tidak
+     */
     public void setFireProof(boolean fireProof) {
         this.fireProof = fireProof;
     }

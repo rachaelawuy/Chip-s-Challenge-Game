@@ -10,10 +10,14 @@ import java.net.URL;
 
 /**
  *
- * @author rachae
+ * @author rachael
  */
 public class Water extends Tile {
 
+    /**
+     * Konstruktor kelas Water
+     * Mengeset atribut gambar dengan gambar berupa air
+     */
     public Water() {
         String imgFileName = "water.png";
         URL imgURL = getClass().getResource("/images/water.png");

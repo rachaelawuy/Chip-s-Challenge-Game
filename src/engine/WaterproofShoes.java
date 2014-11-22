@@ -6,15 +6,18 @@
 
 package engine;
 
-import java.awt.Point;
 import java.net.URL;
 
 /**
  *
- * @author rachae
+ * @author rachael
  */
 public class WaterproofShoes extends Tile {
 
+    /**
+     * Konstruktor kelas WaterproofShoes
+     * Mengeset atribut gambar dengan gambar berupa sepatu tahan air
+     */
     public WaterproofShoes(){
         String imgFileName= "waterproof shoes.png";
         URL imgURL= getClass().getResource("/images/waterproof shoes.png");

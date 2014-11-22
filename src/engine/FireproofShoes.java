@@ -11,10 +11,14 @@ import java.net.URL;
 
 /**
  *
- * @author rachae
+ * @author rachael
  */
 public class FireproofShoes extends Tile{
 
+    /**
+     * Konstruktor kelas FireproofShoes
+     * Mengeset atribut gambar dengan gambar berupa sepatu tahan api
+     */
     public FireproofShoes(){
         String imgFileName= "fireproof shoes.png";
         URL imgURL= getClass().getResource("/images/fireproof shoes.png");

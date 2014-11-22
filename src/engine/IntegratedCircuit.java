@@ -10,10 +10,14 @@ import java.net.URL;
 
 /**
  *
- * @author rachae
+ * @author rachael
  */
 public class IntegratedCircuit extends Tile {
     
+    /**
+     * Konstruktor kelas IntegratedCircuit
+     * Mengeset atribut gambar dengan gambar berupa IC
+     */
     public IntegratedCircuit() {
         String imgFileName= "ic31.png";
         URL imgURL= getClass().getResource("/images/ic31.png");

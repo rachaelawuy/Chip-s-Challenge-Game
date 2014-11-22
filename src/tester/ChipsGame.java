@@ -192,10 +192,9 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
         repaint();
     }
 
-    
     public void nextLevel(){
         level+=1;
-        if(level<3){
+        if(level<7){
             fileName="src\\level "+level+".txt";
             System.out.println(fileName);
             b.addLevel(fileName);

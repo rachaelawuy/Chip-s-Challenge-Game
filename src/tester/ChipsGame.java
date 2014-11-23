@@ -28,7 +28,7 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
      * Creates new form ChipsGame
      */
     public ChipsGame() throws FileNotFoundException {
-        level=10;
+        level=1;
         this.fileName="src\\level "+level+".txt";
         this.b= new Board(fileName);
         this.getContentPane().add(b);
@@ -209,6 +209,9 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
             b.addLevel(fileName);
             repaint();
             labelSisaChip.setText(b.getAmountOfIC()+"");
+        } else {
+            JOptionPane.showMessageDialog(null, "Congratulations! \nYou have succesfully finished Chip's Challenge.", "Win message", JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
         }
     }
 }

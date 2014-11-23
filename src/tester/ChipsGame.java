@@ -6,6 +6,7 @@
 
 package tester;
 
+import java.awt.FocusTraversalPolicy;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -27,7 +28,7 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
      * Creates new form ChipsGame
      */
     public ChipsGame() throws FileNotFoundException {
-        level=1;
+        level=10;
         this.fileName="src\\level "+level+".txt";
         this.b= new Board(fileName);
         this.getContentPane().add(b);
@@ -58,6 +59,7 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setPreferredSize(new java.awt.Dimension(460, 330));
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -89,7 +91,7 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(388, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(labelSisaChip, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -135,8 +137,15 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
             labelPenunjukLevel.setText(level+"");
         }
         if(!b.getPlayer().getStatus()){
-            JOptionPane.showMessageDialog(null, "Game Over");
-            
+            Object[] options={"Restart","Exit"};
+            int reply = JOptionPane.showOptionDialog(null, "You Are Dead", "Game Over", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+            if(reply== JOptionPane.YES_OPTION){
+                b.addLevel(fileName);
+                repaint();
+                labelSisaChip.setText(b.getAmountOfIC()+"");
+            } else {
+                System.exit(0);
+            }
         }
     }//GEN-LAST:event_formKeyPressed
     
@@ -194,7 +203,7 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
 
     public void nextLevel(){
         level+=1;
-        if(level<7){
+        if(level<11){
             fileName="src\\level "+level+".txt";
             System.out.println(fileName);
             b.addLevel(fileName);

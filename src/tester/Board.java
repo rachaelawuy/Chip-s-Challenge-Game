@@ -34,11 +34,13 @@ public class Board extends JPanel {
     }
 
     /**
-     * Method untuk menambahkan level baru dan membuat board sesuai file text yang dibaca
+     * Method untuk menambahkan level baru dan membuat board sesuai file text
+     * yang dibaca
+     *
      * @param fileName nama file yang dibaca
      */
     public void addLevel(String fileName) {
-        res=new ArrayList();
+        res = new ArrayList();
         try {
             FileReader reader = new FileReader(fileName);
             BufferedReader buffered = new BufferedReader(reader);
@@ -82,17 +84,53 @@ public class Board extends JPanel {
                 } else if (res.get(i).toString().charAt(j) == 'C') {
                     tiles[i][j] = new Floor();
                     player = new Chip(i, j);
-                } else if (res.get(i).toString().charAt(j) == 'V'){
-                    tiles[i][j]= new FireproofShoes();
-                } else if (res.get(i).toString().charAt(j) == 'W'){
-                    tiles[i][j]= new Water();
-                } else if (res.get(i).toString().charAt(j) == 'S'){
-                    tiles[i][j]= new WaterproofShoes();
+                } else if (res.get(i).toString().charAt(j) == 'V') {
+                    tiles[i][j] = new FireproofShoes();
+                } else if (res.get(i).toString().charAt(j) == 'W') {
+                    tiles[i][j] = new Water();
+                } else if (res.get(i).toString().charAt(j) == 'S') {
+                    tiles[i][j] = new WaterproofShoes();
                 }
             }
         }
     }
 
+    /**
+     * Method untuk mengecek apakah tiles disebelah kiri player bisa dilewati
+     * @return true jika bisa dilewati, false jika tidak
+     */
+    private boolean checkLeft(){
+        if(tiles[player.getLocation().x][(player.getLocation().y)-1].moveable()) return true;
+        else return false;
+    }
+    
+    /**
+     * Method untuk mengecek apakah tiles disebelah kanan player bisa dilewati
+     * @return true jika bisa dilewati, false jika tidak
+     */
+    private boolean checkRight(){
+        if(tiles[player.getLocation().x][(player.getLocation().y)+1].moveable()) return true;
+        else return false;
+    }
+    
+    /**
+     * Method untuk mengecek apakah tiles diatas player bisa dilewati
+     * @return true jika bisa dilewati, false jika tidak
+     */
+    private boolean checkUp(){
+        if(tiles[(player.getLocation().x)-1][player.getLocation().y].moveable()) return true;
+        else return false;
+    }
+    
+    /**
+     * Method untuk mengecek apakah tiles dibawah player bisa dilewati
+     * @return true jika bisa dilewati, false jika tidak
+     */
+    private boolean checkDown(){
+        if(tiles[(player.getLocation().x)+1][player.getLocation().y].moveable()) return true;
+        else return false;
+    }
+    
     /**
      * Method untuk mengecek apakah suatu tile bisa dilewati
      *
@@ -103,37 +141,100 @@ public class Board extends JPanel {
         boolean res = false;
         int x = 0;
         int y = 0;
-        if (direction == 2) {
-            x = (this.player.getLocation().x) + 1;
-            y = this.player.getLocation().y;
-            if (this.tiles[x][y].moveable()) {
-                res = true;
+        if (player.getLocation().x == 0 || player.getLocation().x==9) {
+            if(player.getLocation().x == 0){
+                if(direction==2){
+                    res=checkDown();
+                } else if(player.getLocation().y==0){
+                    if(direction==6){
+                        res=checkRight();
+                    }
+                } else if(player.getLocation().y==9){
+                    if(direction==4){
+                        res=checkLeft();
+                    }
+                } else {
+                    if(direction==6){
+                        res=checkRight();
+                    } else if(direction==4){
+                        res=checkLeft();
+                    }
+                }
+            } else {
+                if(direction==8){
+                    res=checkUp();
+                } else if(player.getLocation().y==0){
+                    if(direction==6){
+                        res=checkRight();
+                    }
+                } else if(player.getLocation().y==9){
+                    if(direction==4){
+                        res=checkLeft();
+                    }
+                } else{
+                    if(direction==6){
+                        res=checkRight();
+                    } else if(direction==4){
+                        res=checkLeft();
+                    }
+                }
+            }
+        } else if (player.getLocation().y == 0 || player.getLocation().y==9) {
+            if(player.getLocation().y == 0){
+                if(direction==6){
+                    res=checkRight();
+                } else if(player.getLocation().x==0){
+                    if(direction==2){
+                        res=checkDown();
+                    }
+                } else if(player.getLocation().x==9){
+                    if(direction==8){
+                        res=checkUp();
+                    }
+                } else {
+                    if(direction==2){
+                        res=checkDown();
+                    } else if(direction==8){
+                        res=checkUp();
+                    }
+                }
+            } else {
+                if(direction==4){
+                    res=checkLeft();
+                } else if(player.getLocation().x==0){
+                    if(direction==2){
+                        res=checkDown();
+                    }
+                } else if(player.getLocation().x==9){
+                    if(direction==8){
+                        res=checkUp();
+                    }
+                } else{
+                    if(direction==2){
+                        res=checkDown();
+                    } else if(direction==8){
+                        res=checkUp();
+                    }
+                }
+            }
+        } else {
+            if(direction==2){
+                res= checkDown();
+            }
+            if(direction==4){
+                res=checkLeft();
+            }
+            if(direction==6){
+                res=checkRight();
+            }
+            if(direction==8){
+                res=checkUp();
+            }
+            if (x > tiles.length || y > tiles.length) {
+                res = false;
             }
         }
-        if (direction == 4) {
-            x = this.player.getLocation().x;
-            y = (this.player.getLocation().y) - 1;
-            if (this.tiles[x][y].moveable()) {
-                res = true;
-            }
-        }
-        if (direction == 6) {
-            x = this.player.getLocation().x;
-            y = (this.player.getLocation().y) + 1;
-            if (this.tiles[x][y].moveable()) {
-                res = true;
-            }
-        }
-        if (direction == 8) {
-            x = (this.player.getLocation().x) - 1;
-            y = this.player.getLocation().y;
-            if (this.tiles[x][y].moveable()) {
-                res = true;
-            }
-        }
-        if (x > tiles.length || y > tiles.length) {
-            res = false;
-        }
+
         return res;
     }
 
@@ -191,10 +292,11 @@ public class Board extends JPanel {
 
     /**
      * Method untuk mengembalikan jumlah IC
+     *
      * @return jumlah IC
      */
     public int getAmountOfIC() {
         return amountOfIC;
     }
-    
+
 }

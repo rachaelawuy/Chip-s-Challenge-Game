@@ -205,7 +205,6 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
         level+=1;
         if(level<11){
             fileName="src\\level "+level+".txt";
-            System.out.println(fileName);
             b.addLevel(fileName);
             repaint();
             labelSisaChip.setText(b.getAmountOfIC()+"");

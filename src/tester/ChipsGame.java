@@ -38,6 +38,8 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
         this.setResizable(false);
         this.setVisible(true);
         initComponents();
+        labelFireproofShoes.setVisible(false);
+        labelWaterproofShoes.setVisible(false);
         labelSisaChip.setText(b.getAmountOfIC()+"");
         labelPenunjukLevel.setText(level+"");
     }
@@ -56,6 +58,9 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
         labelLeft = new javax.swing.JLabel();
         labelPenunjukLevel = new javax.swing.JLabel();
         labelSisaChip = new javax.swing.JLabel();
+        labelEquipments = new javax.swing.JLabel();
+        labelFireproofShoes = new javax.swing.JLabel();
+        labelWaterproofShoes = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -87,19 +92,37 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
         labelSisaChip.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelSisaChip.setText("...");
 
+        labelEquipments.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labelEquipments.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelEquipments.setText("Equipments:");
+        labelEquipments.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        labelFireproofShoes.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelFireproofShoes.setText("- Fireproof Shoes");
+
+        labelWaterproofShoes.setText("- Waterproof Shoes");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(388, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(labelSisaChip, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelPenunjukLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelChip, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(368, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labelSisaChip, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelPenunjukLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelChip, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labelFireproofShoes, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelEquipments, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelWaterproofShoes, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,7 +137,13 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
                 .addComponent(labelLeft)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelSisaChip, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelEquipments)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelFireproofShoes, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelWaterproofShoes, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         pack();
@@ -131,6 +160,12 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
             b.play(6);
         }
         labelSisaChip.setText(b.getAmountOfIC()-b.getPlayer().getIcTaken()+"");
+        if(b.getPlayer().getFireProof()){
+            labelFireproofShoes.setVisible(true);
+        }
+        if(b.getPlayer().getWaterProof()){
+            labelWaterproofShoes.setVisible(true);
+        }
         if(b.getPlayer().isFinish()){
             JOptionPane.showMessageDialog(null, "Level "+level+" selesai!");
             nextLevel();
@@ -190,10 +225,13 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel labelChip;
+    private javax.swing.JLabel labelEquipments;
+    private javax.swing.JLabel labelFireproofShoes;
     private javax.swing.JLabel labelLeft;
     private javax.swing.JLabel labelLevel;
     private javax.swing.JLabel labelPenunjukLevel;
     private javax.swing.JLabel labelSisaChip;
+    private javax.swing.JLabel labelWaterproofShoes;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -207,6 +245,8 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
             fileName="src\\level "+level+".txt";
             b.addLevel(fileName);
             repaint();
+            labelFireproofShoes.setVisible(false);
+            labelWaterproofShoes.setVisible(false);
             labelSisaChip.setText(b.getAmountOfIC()+"");
         } else {
             JOptionPane.showMessageDialog(null, "Congratulations! \nYou have succesfully finished Chip's Challenge.", "Win message", JOptionPane.INFORMATION_MESSAGE);

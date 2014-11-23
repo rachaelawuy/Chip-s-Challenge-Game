@@ -7,8 +7,11 @@ package tester;
 
 import engine.*;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Point;
+import java.awt.Toolkit;
 import java.io.*;
+import java.net.URL;
 import java.util.*;
 import javax.swing.JPanel;
 

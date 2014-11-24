@@ -16,7 +16,7 @@ public class IntegratedCircuit extends Tile {
     
     /**
      * Konstruktor kelas IntegratedCircuit
-     * Mengeset atribut gambar dengan gambar berupa IC
+     * Mengeset atribut gambar dengan gambar berupa IC / chip komputer
      */
     public IntegratedCircuit() {
         String imgFileName= "ic31.png";

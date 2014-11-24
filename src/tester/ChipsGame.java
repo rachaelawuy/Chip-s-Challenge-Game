@@ -63,6 +63,7 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
         labelWaterproofShoes = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Chip's Challenge");
         setAutoRequestFocus(false);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setPreferredSize(new java.awt.Dimension(460, 330));
@@ -92,10 +93,9 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
         labelSisaChip.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelSisaChip.setText("...");
 
-        labelEquipments.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labelEquipments.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         labelEquipments.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelEquipments.setText("Equipments:");
-        labelEquipments.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         labelFireproofShoes.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelFireproofShoes.setText("- Fireproof Shoes");
@@ -107,7 +107,7 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(368, Short.MAX_VALUE)
+                .addContainerGap(317, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -120,8 +120,8 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(labelFireproofShoes, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelEquipments, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelWaterproofShoes, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labelWaterproofShoes, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelEquipments))
                         .addGap(25, 25, 25))))
         );
         layout.setVerticalGroup(
@@ -137,16 +137,17 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
                 .addComponent(labelLeft)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelSisaChip, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelEquipments)
+                .addGap(1, 1, 1)
+                .addComponent(labelEquipments, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelFireproofShoes, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelWaterproofShoes, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
@@ -167,7 +168,7 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
             labelWaterproofShoes.setVisible(true);
         }
         if(b.getPlayer().isFinish()){
-            JOptionPane.showMessageDialog(null, "Level "+level+" selesai!");
+            JOptionPane.showMessageDialog(null, "You have finished level "+level+"!");
             nextLevel();
             labelPenunjukLevel.setText(level+"");
         }

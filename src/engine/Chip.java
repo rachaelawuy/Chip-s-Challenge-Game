@@ -22,12 +22,12 @@ public class Chip extends JPanel{
     private int icTaken; //jumlah chip yang telah diambil
     private boolean finish; //status yang menunjukkan apakah chip sudah sampai ke finish point
     private Image img; //gambar Chip
-    private boolean waterProof;
-    private boolean fireProof;
+    private boolean waterProof; //status kepemilikian sepatu anti air player
+    private boolean fireProof; //status kepemilikan sepatu anti api player
     
     /**
      * Constructor Kelas Chip Menginisiasikan status Chip menjadi true dan
-     * jumlah IC yg diambil dengan 0
+     * jumlah IC/chip computer yg diambil dengan 0
      * @param x koordinat x posisi Chip
      * @param y koordinat y posisi Chip
      */
@@ -99,10 +99,10 @@ public class Chip extends JPanel{
     }
 
     /**
-     * Method untuk mengambil IC Jika lokasi Chip tidak sama dengan lokasi IC
+     * Method untuk mengambil item yang terletak pada suatu tile
      * maka tidak akan terjadi apa-apa
-     * @param x koordinat x posisi IC
-     * @param y koordinat y posisi IC
+     * @param x koordinat x posisi item
+     * @param y koordinat y posisi item
      */
     public void take(int x, int y, Object o) {
         Point ic = new Point(x, y);
@@ -116,7 +116,7 @@ public class Chip extends JPanel{
     }
 
     /**
-     * Method untuk menggerakkan Chip
+     * Method untuk menggerakkan player
      *
      * @param x 2 berarti kebawah, 4 berarti kekiri, 8 berarti keatas, 6 berarti
      * kekanan
@@ -151,9 +151,9 @@ public class Chip extends JPanel{
     }
 
     /**
-     * Method untuk mengembalikan jumlah IC yang telah diambil
+     * Method untuk mengembalikan jumlah IC/chip computer yang telah diambil
      *
-     * @return jumlah IC yang telah diambil
+     * @return jumlah IC/chip computer yang telah diambil
      */
     public int getIcTaken() {
         return icTaken;

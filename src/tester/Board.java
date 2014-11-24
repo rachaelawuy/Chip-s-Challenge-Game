@@ -7,11 +7,7 @@ package tester;
 
 import engine.*;
 import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Point;
-import java.awt.Toolkit;
 import java.io.*;
-import java.net.URL;
 import java.util.*;
 import javax.swing.JPanel;
 
@@ -63,7 +59,7 @@ public class Board extends JPanel {
     /**
      * method untuk membuat board
      */
-    public void generateTile() {
+    private void generateTile() {
         xBarrier = 0;
         yBarrier = 0;
         amountOfIC = 0;
@@ -140,7 +136,7 @@ public class Board extends JPanel {
      * @param direction arah chip bergerak
      * @return true jika tile bisa dilewati, false jika tidak
      */
-    public boolean canMove(int direction) {
+    private boolean canMove(int direction) {
         boolean res = false;
         int x = 0;
         int y = 0;

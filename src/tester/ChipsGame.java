@@ -29,7 +29,7 @@ public class ChipsGame extends javax.swing.JFrame implements ActionListener{
      */
     public ChipsGame() throws FileNotFoundException {
         level=1;
-        this.fileName="src\\level "+level+".txt";
+        this.fileName="levels/level "+level+".txt";
         this.b= new Board(fileName);
         this.getContentPane().add(b);
         this.pack();

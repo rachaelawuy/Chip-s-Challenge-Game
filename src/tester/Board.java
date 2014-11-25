@@ -20,7 +20,7 @@ public class Board extends JPanel {
     private Tile[][] tiles; //papan permainan
     private Chip player; //pemain
     private int amountOfIC; //jumlah IC yang harus diambil
-    private ArrayList res;
+    private ArrayList<String> res;
     private int xBarrier, yBarrier;
 
     /**
@@ -39,7 +39,7 @@ public class Board extends JPanel {
      * @param fileName nama file yang dibaca
      */
     public void addLevel(String fileName) {
-        res = new ArrayList();
+        res = new ArrayList<String>();
         try {
             FileReader reader = new FileReader(fileName);
             BufferedReader buffered = new BufferedReader(reader);
